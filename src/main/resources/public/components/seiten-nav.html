@@ -1,0 +1,43 @@
+<!-- Siehe components/seiten-nav.js -->
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <div>{{ $ctrl.titel }}</div>
+
+    <div flex></div>
+
+    <md-button class="md-icon-button"
+               ng-click="$ctrl.laden({ number: $ctrl.seite.erste })"
+               ng-disabled="$ctrl.seite.istErste">
+      <md-icon md-font-icon="material-icons">first_page</md-icon>
+    </md-button>
+
+    <md-button class="md-icon-button"
+               ng-click="$ctrl.laden({ number: $ctrl.seite.vorige })"
+               ng-disabled="$ctrl.seite.istErste">
+      <md-icon md-font-icon="material-icons">chevron_left</md-icon>
+    </md-button>
+
+    <div>
+      Seite {{ $ctrl.seite.laufendeNr }}
+      von
+      {{ $ctrl.seite.page.totalPages }}
+    </div>
+
+    <md-button class="md-icon-button"
+               ng-click="$ctrl.laden({ number: $ctrl.seite.naechste })"
+               ng-disabled="$ctrl.seite.istLetzte">
+      <md-icon md-font-icon="material-icons">chevron_right</md-icon>
+    </md-button>
+
+    <md-button class="md-icon-button"
+               ng-click="$ctrl.laden({ number: $ctrl.seite.letzte })"
+               ng-disabled="$ctrl.seite.istLetzte">
+      <md-icon md-font-icon="material-icons">last_page</md-icon>
+    </md-button>
+
+    <div flex></div>
+
+    <ng-transclude flex="none"></ng-transclude>
+  </div>
+</md-toolbar>

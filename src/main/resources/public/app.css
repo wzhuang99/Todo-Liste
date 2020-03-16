@@ -1,0 +1,74 @@
+:root {
+  --hintergrund: #f0f0f0;
+  --trennlinie: #666666;
+}
+
+task-seite, .task-seite {
+  height: 100%;
+}
+
+.task-seite .header {
+  padding: 0 8px;
+  border-bottom: 1px solid var(--trennlinie);
+}
+
+.task-seite .header .button,
+.task .button {
+  width: 52px;
+}
+
+.task-seite .header md-input-container .md-errors-spacer {
+  min-height: 0;
+}
+
+.task-seite .neu.ng-hide {
+  max-height: 0;
+}
+
+.task-seite md-content {
+  z-index: 30;
+}
+
+task:nth-child(even) > .task,
+md-content > .task:nth-child(even) {
+  background-color: var(--hintergrund);
+}
+
+.task {
+  margin: 0;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--trennlinie);
+}
+
+.task .kurztext {
+  margin: 6px 0;
+}
+
+.task img,
+.avatar {
+  display: block;
+  width: 32px;
+  margin: 6px;
+}
+
+.task md-checkbox {
+  width: 4em;
+  margin-bottom: 0;
+}
+
+.task.ueberfaellig {
+  background-color: #ffe8e8 !important;
+}
+
+.task-editor md-input-container {
+  margin-bottom: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+md-checkbox.center .md-container {
+  left: 50%;
+  margin-left: -10px;
+}

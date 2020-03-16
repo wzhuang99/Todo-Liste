@@ -1,0 +1,40 @@
+<style>
+  .auth md-input-container {
+    width: 5em;
+    margin: 12px 0 16px 1em;
+  }
+
+  .auth md-input-container .md-errors-spacer {
+    min-height: 0 !important;
+  }
+
+  .auth md-input-container input,
+  .auth md-input-container input::placeholder {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.87);
+    border-color: rgba(255, 255, 255, 0.87);
+  }
+</style>
+
+
+<div class="auth">
+  <form name="$ctrl.loginForm" layout="row" layout-align="start center" ng-hide="$ctrl.AuthService.user().username">
+    <md-input-container md-no-float>
+      <input type="text" name="username" placeholder="Benutzer" ng-model="$ctrl.username" required>
+    </md-input-container>
+
+    <md-input-container md-no-float>
+      <input type="password" name="password" placeholder="Passwort" ng-model="$ctrl.password" required>
+    </md-input-container>
+
+    <md-button ng-click="$ctrl.login()" ng-disabled="$ctrl.loginForm.$invalid">
+      Anmelden
+    </md-button>
+  </form>
+
+  <div layout="row" layout-align="start center" ng-show="$ctrl.AuthService.user().username">
+    <md-button ng-click="$ctrl.logout()">
+      {{ $ctrl.AuthService.user().username }} abmelden
+    </md-button>
+  </div>
+</div>

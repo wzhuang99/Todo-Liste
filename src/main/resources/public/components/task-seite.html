@@ -1,0 +1,48 @@
+<!-- ************** Ansicht der Aufgabenliste *************** -->
+<div class="task-seite" layout="column">
+
+    <!-- Toolbar mit Seitennavigation und An-/Abmeldung -->
+    <seiten-nav titel="Todo-Liste" laden="$ctrl.laden(number)" seite="$ctrl.seite">
+        <auth></auth>
+    </seiten-nav>
+
+    <!-- Listen-Überschrift mit Suchfeld und Buttn -->
+    <div class="header" flex="none" layout="row" layout-align="start center">
+        <div flex>Kurztext</div>
+
+        <div flex="10" class="center">Priorität</div>
+
+        <div flex="20" class="center">Fällig</div>
+
+        <div flex="none" class="avatar"></div>
+
+        <!-- Suchbegriff -->
+        <md-input-container flex="15" md-no-float>
+            <input type="text"
+                   placeholder="Verantwortlich"
+                   ng-model="$ctrl.suchbegriff"
+                   ng-model-options="{debounce:300}"
+                   ng-change="$ctrl.laden(0)">
+        </md-input-container>
+
+        <div flex="10" class="center">Erledigt</div>
+
+        <!-- Button für neue Aufgabe -->
+        <div flex="none" class="button">
+            <md-button class="md-icon-button md-primary"
+                       ui-sref="taskedit()"
+                       ng-show="$ctrl.authenticated()">
+                <md-icon md-font-icon="material-icons">add</md-icon>
+            </md-button>
+        </div>
+    </div>
+
+    <!-- Aufgaben-Liste -->
+    <md-content>
+
+    <task ng-repeat="task in $ctrl.seite.entities" task="task"></task>
+
+
+    </md-content>
+</div>
+<!-- ************** Ende Ansicht der Aufgabenliste *************** -->

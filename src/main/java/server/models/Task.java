@@ -3,16 +3,21 @@ package server.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Formula;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 
 
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"verantwortlich_id", "kurztext"})
+})
+@EntityListeners(AuditingEntityListener.class)
 public class Task extends Persistent {
 
     @NotBlank
@@ -42,6 +47,18 @@ public class Task extends Persistent {
     private boolean mitBeilage;
 
 
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @CreatedBy
+    private User verantwortlich;
+
+    public User getVerantwortlich() {
+        return verantwortlich;
+    }
+
+    public void setVerantwortlich(User verantwortlich) {
+        this.verantwortlich = verantwortlich;
+    }
+
     public String getKurztext() {
         return kurztext;
     }
@@ -62,16 +79,23 @@ public class Task extends Persistent {
     }
 
 
-    public Date getFaellig() { return faellig; }
+    public Date getFaellig() {
+        return faellig;
+    }
 
 
-    public void setFaellig(Date faellig) { this.faellig = faellig; }
+    public void setFaellig(Date faellig) {
+        this.faellig = faellig;
+    }
 
 
-    public boolean isUeberfaellig() { return ueberfaellig; }
+    public boolean isUeberfaellig() {
+        return ueberfaellig;
+    }
 
 
-    public void setUeberfaellig(boolean ueberfaellig) {}
+    public void setUeberfaellig(boolean ueberfaellig) {
+    }
 
 
     public boolean isErledigt() {

@@ -1,0 +1,66 @@
+<!-- ************************** Ansicht Aufgaben-Editor ******************** -->
+<div class="task-editor" layout="column">
+
+    <!-- Toolbar -->
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <!-- Zurück-Button -->
+            <md-button class="md-icon-button" ng-click="$ctrl.back()">
+                <md-icon md-font-icon="material-icons">arrow_back</md-icon>
+            </md-button>
+
+            <div flex class="center">Aufgabe bearbeiten</div>
+
+            <!-- Speichern-Button -->
+            <md-button class="md-icon-button" ng-click="$ctrl.save()">
+                <md-icon md-font-icon="material-icons">check</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+    <form flex="none" layout="row" layout-align="start start" layout-padding>
+
+        <md-input-container flex>
+            <label>Kurztext</label>
+            <input type="text"
+                   ng-model="$ctrl.task.kurztext"
+                   ng-minlength="5"
+                   ng-maxlength="255"
+                   required>
+        </md-input-container>
+
+        <md-input-container>
+            <file-content-chooser ng-model="$ctrl.task.beilage">
+                <md-button class="md-icon-button">
+                    <md-icon md-font-icon="material-icons">cloud_upload</md-icon>
+                </md-button>
+            </file-content-chooser>
+        </md-input-container>
+
+        <md-input-container flex="10" class="select">
+            <label>Priorität</label>
+            <md-select class="center"
+                       ng-model="$ctrl.task.prio"
+                       required>
+                <md-option ng-value="1">1</md-option>
+                <md-option ng-value="2">2</md-option>
+                <md-option ng-value="3">3</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container flex="20">
+            <label>Fällig bis</label>
+            <input type="date"
+                   ng-model="$ctrl.task.faellig"
+                   required>
+        </md-input-container>
+
+        <md-input-container>
+            <md-checkbox flex="10" class="center" ng-model="$ctrl.task.erledigt">
+            </md-checkbox>
+        </md-input-container>
+
+    </form>
+</div>
+<!-- ************************** Ende Ansicht Aufgaben-Editor ******************** -->

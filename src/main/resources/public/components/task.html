@@ -1,0 +1,35 @@
+<!-- ************** Einzelne Aufgabe ************* -->
+<div class="task" flex layout="row" layout-align="start center">
+
+    <div class="kurztext" flex> {{$ctrl.task.kurztext}} </div>
+
+
+    <dataurl-downloader ng-show="($ctrl.task.mitBeilage !== undefined) && $ctrl.task.mitBeilage"
+                        entity="$ctrl.task"
+                        property="beilage"
+                        projection="nurbeilage">
+        <md-button flex="none" class="md-icon-button">
+            <md-icon md-font-icon="material-icons">cloud_download</md-icon>
+        </md-button>
+    </dataurl-downloader>
+
+    <div flex="10" class="center">{{$ctrl.task.prio}}</div>
+
+    <div flex="20" class="center">{{$ctrl.task.faellig}}</div>
+
+    <div flex="none">
+        <img class="avatar" src="{{$ctrl.task.verantwortlich.avatar}}">
+    </div>
+
+    <div flex="15">{{$ctrl.task.verantwortlich.username}}</div>
+
+    <md-checkbox flex="10" class="center" ng-model="$ctrl.task.erledigt">
+    </md-checkbox>
+
+    <!-- "Bearbeiten"-Button -->
+    <div flex="none" class="button">
+        <md-button ng-show="$ctrl.authorised()" class="md-icon-button md-primary" ui-sref="taskedit({task: $ctrl.task})">
+            <md-icon md-font-icon="material-icons">edit</md-icon>
+        </md-button>
+    </div>
+</div>

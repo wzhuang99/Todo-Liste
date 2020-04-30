@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="de" ng-app="TodoListe">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <title>Todo-Liste</title>
     <link rel="icon" href="favicon.ico">
-  
+
     <link rel="stylesheet" href="vendor/material-icons-3.0.1/material-icons.css">
     <link rel="stylesheet" href="vendor/roboto/roboto.css">
-  
+
     <link rel="stylesheet" href="vendor/angular-material-1.1.10/angular-material.min.css">
-  
+
     <link rel="stylesheet" href="app.css">
-    
+
     <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
     <script src="vendor/moment.js-2.22.2/moment.min.js"></script>
     <script src="vendor/moment.js-2.22.2/locale/de.js" charset="UTF-8"></script>
@@ -29,22 +29,23 @@
 
     <script src="vendor/angular-material-1.1.10/angular-material.min.js"></script>
     <script src="vendor/angular-ui-router-1.0.20/angular-ui-router.min.js"></script>
-  
+
     <script src="app.js"></script>
     <script src="components/seiten-nav.js"></script>
     <script src="components/auth.js"></script>
     <script src="components/file-content-chooser.js"></script>
     <script src="components/dataurl-downloader.js"></script>
+    <script src="components/task.js"></script>
+    <script src="components/task-seite.js"></script>
+    <script src="components/task-editor.js"></script>
     <script src="models/task.js"></script>
     <script src="models/seite.js"></script>
     <script src="services/rest.js"></script>
     <script src="services/auth.js"></script>
-  </head>
+</head>
 
-  <body layout="column" ng-cloak>
-    <h2 style="padding: 6px;">Links zu den Vorlagen</h2>
-    <div style="padding: 6px;"><a href="task-seite.html">Vorlage für die Aufgabenliste</a></div>
-    <div style="padding: 6px;"><a href="task-editor.html">Vorlage für Aufgaben-Editor</a></div>
-  </body>
+<body layout="column" ng-cloak>
+<ui-view></ui-view>
+</body>
 
 </html>

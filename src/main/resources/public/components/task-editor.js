@@ -20,12 +20,19 @@ app.controller("taskEditorController", function ($log, $state, $stateParams, Tas
 
     this.task = new Task($stateParams.task);
 
+    /**
+     * Zurück-Button
+     */
     this.back = () => {
         $state.go("tasks");
     };
 
+    /**
+     * Sendet PATCH/POST-Abfrage an den Server mit der aktuellen Entity
+     * Entity wird anschließend in der Datenbank gespeichert
+     */
     this.save = () => {
-        this.task.verantwortlich = AuthService.user()
+        this.task.verantwortlich = AuthService.user();
         RestService.speichern(this.task)
             .then(() => {
                 $state.go("tasks");

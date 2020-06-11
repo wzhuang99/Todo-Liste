@@ -8,6 +8,9 @@ app.component("task", {
 
 app.controller("taskController", function ($log, AuthService) {
 
+    /**
+     * Überprüft den angemeldeten Benutzer
+     */
     this.authorised = () => {
         let authenticated  = AuthService.user();
         return authenticated && authenticated.username === (this.task.verantwortlich.username);

@@ -6,13 +6,14 @@ import org.hibernate.annotations.Formula;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.web.bind.annotation.DeleteMapping;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 
-
+/**
+ * Fachklasse für die Tabelle Task
+ * Beschreibt die Aufgaben der Liste
+ */
 @Entity
 @Table(uniqueConstraints = {
         @UniqueConstraint(columnNames = {"verantwortlich_id", "kurztext"})
@@ -20,35 +21,59 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class Task extends Persistent {
 
+    /**
+     * Beschreibung der Aufgabe
+     */
     @NotBlank
     @Size(min = 5, max = 255)
     private String kurztext;
 
+    /**
+     * Priorität der Aufgabe
+     */
     @NotNull
     @Min(1)
     @Max(3)
     private int prio;
 
+    /**
+     * Deadline der Aufgabe
+     */
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date faellig;
 
+    /**
+     * Ist die Deadline überzogen?
+     */
     @Formula("now() > faellig and not erledigt")
     private boolean ueberfaellig;
 
+    /**
+     * ist die Aufgabe erledigt?
+     */
     @NotNull
     private boolean erledigt;
 
+    /**
+     * angehängte Datei
+     */
     @Lob
     @JsonIgnore
     private String beilage;
 
+    /**
+     * Gibt es eine angehängte Datei zur Aufgabe?
+     */
     @Formula("beilage is not null")
     private boolean mitBeilage;
 
-
+    /**
+     * Der Benutzer, dem die Aufgabe zugewiesen wurde
+     */
     @ManyToOne(cascade = CascadeType.REMOVE)
     @CreatedBy
+    @LastModifiedBy
     private User verantwortlich;
 
     public User getVerantwortlich() {

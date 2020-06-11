@@ -9,11 +9,8 @@ import java.util.function.Function;
 
 
 /**
- * Basisklasse aller persistenten Entities in dieser Anwendung,
- * erleichtert bidirektionale Updates von 1:n-Beziehungen zwischen
- * Entities.
+ * Basis-Fachklasse für jede Entity-Klasse
  *
- * @author F. Kasper, ferdinand.kasper@bildung.gv.at
  */
 @MappedSuperclass
 public class Persistent {
@@ -26,7 +23,7 @@ public class Persistent {
     private long version;
 
 
-    /** Erscheint nicht im JSON-API, obwohl dies eine get-Methode ist. */
+    /** wird nicht am Rest-API angezeigt */
     public Long getId() {
         return id;
     }
@@ -38,22 +35,22 @@ public class Persistent {
 
 
     /**
-     * Hilfsmethode für die 1-Seite einer 1:n-Beziehung, die auch die n-Seite aktualisiert.
+     * Hilfsmethode für die 1-Seite einer 1:n Beziehung, die auch die n-Seite aktualisiert.
      *
      * @param newCollection
-     *      neu zuzuweisende {@link Collection} von Entities der n-Seite
+     *      neu zugewiesene {@link Collection} für die n-seite
      * @param setEntity
      *      set-{@linkplain BiConsumer Methode} der n-Seite für die Entity der 1-Seite
      * @param getCollection
-     *      get-{@linkplain Function Methode} der 1-Seite für die {@link Collection} von Entities der n-Seite
+     *      get-{@linkplain Function Methode} der 1-Seite für die  {@link Collection} von entities der n-Seite
      * @param <O>
-     *      Datentyp der 1-Seite
+     *      Datentyp der 1-seite
      * @param <M>
      *      Datentyp der n-Seite
      * @param <C>
      *      {@link Collection} oder Subklasse
      * @return
-     *      neu zugewiesene {@link Collection} von Entities der n-Seite
+     *      neu zugewiesene {@link Collection} der entities von der n-Seite
      */
     protected <O extends Persistent, M extends Persistent, C extends Collection<M>>
             C setOneToMany(C newCollection, BiConsumer<M, O> setEntity, Function<O, C> getCollection) {
@@ -62,16 +59,16 @@ public class Persistent {
 
         // Soll überhaupt eine andere Collection zugewiesen werden?
         if (newCollection != collection) {
-            // Gibt es derzeit eine Collection von n-Entities?
+            // Gibt derzeit eine Collection von n-Entities?
             if (collection != null) {
-                // Alle bisherigen n-Entities entfernen
-                // Um ConcurrentModificationException zu verhindern:
+                // entferne alle Entities der n-Seite
+                // verhindere ConcurrentModificationException:
                 new ArrayList<M>(collection).forEach(e -> setEntity.accept(e, null));
             }
 
-            // Wurde eine neue Collection von n-Entities angegeben?
+            // Wurde eine neue Collection von n-Entities definiert?
             if (newCollection != null) {
-                // Alle neuen n-Entities hinzufügen, ConcurrentModificationException vermeiden
+                // füge alle neuen Entities hinzu, verhindere ConcurrentModificationException:
                 List<M> copiedCollection = new ArrayList<>(newCollection);
                 copiedCollection.forEach(e -> setEntity.accept(e, (O) this));
             }

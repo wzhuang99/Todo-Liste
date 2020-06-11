@@ -12,7 +12,15 @@
             <div flex class="center">Aufgabe bearbeiten</div>
 
             <!-- Speichern-Button -->
-            <md-button class="md-icon-button" ng-click="$ctrl.save()">
+            <md-button class="md-icon-button"
+                       ng-click="$ctrl.save()"
+                       ng-disabled="
+                       $ctrl.task.kurztext === undefined ||
+                       $ctrl.task.kurztext === null ||
+                       $ctrl.task.kurztext.length === 0 ||
+                       $ctrl.task.kurztext.length === undefined ||
+                       $ctrl.task.kurztext.length < 5 ||
+                       $ctrl.task.kurztext.length > 255">
                 <md-icon md-font-icon="material-icons">check</md-icon>
             </md-button>
         </div>

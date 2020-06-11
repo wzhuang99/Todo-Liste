@@ -15,7 +15,7 @@
 
     <div flex="10" class="center">{{$ctrl.task.prio}}</div>
 
-    <div flex="20" class="center">{{$ctrl.task.faellig}}</div>
+    <div flex="20" class="center">{{$ctrl.task.faellig | date: "dd.MM.yyyy HH:mm"}}</div>
 
     <div flex="none">
         <img class="avatar" src="{{$ctrl.task.verantwortlich.avatar}}">

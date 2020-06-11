@@ -2,10 +2,11 @@
 Eine Todo-Liste, in der Benutzer ihre Aufgaben verwalten können.
 
 # Backend
-Java's Spring-boot Framework wurde für das Backend verwendet.
+Java's Spring-boot Framework wurde für das Backend verwendet. <br>
 Fachklassen werden durch das ORM-Framework Hibernate in Datenbanktabellen übersetzt.
 Die H2 Database Engine wurde als Datenbankmanagementsystem verwendet.
 Dependencies, die von Maven gebraucht werden, sind in der pom.xml.
+
 
 # Frontend
 Als Frontend wurde die JavaScript Library AngularJS verwendet. 

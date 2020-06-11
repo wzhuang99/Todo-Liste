@@ -2,10 +2,14 @@
 Eine Todo-Liste, in der Benutzer ihre Aufgaben verwalten können.
 
 # Backend
+
+Requirements: <br>
+Java OpenJDK 1.8 oder Java 8+
+
 Java's Spring-boot Framework wurde für das Backend verwendet. <br>
-Fachklassen werden durch das ORM-Framework Hibernate in Datenbanktabellen übersetzt.
-Die H2 Database Engine wurde als Datenbankmanagementsystem verwendet.
-Dependencies, die von Maven gebraucht werden, sind in der pom.xml.
+Fachklassen werden durch das ORM-Framework Hibernate in Datenbanktabellen übersetzt. <br>
+Die H2 Database Engine wurde als Datenbankmanagementsystem verwendet. <br>
+Dependencies, die von Maven gebraucht werden, sind in der pom.xml. <br>
 
 
 # Frontend

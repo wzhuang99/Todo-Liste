@@ -13,7 +13,7 @@ Dependencies, die von Maven gebraucht werden, sind in der pom.xml. <br>
 
 
 # Frontend
-Als Frontend wurde die JavaScript Library AngularJS verwendet. 
-Mit AngularJS wurden Komponenten erstellt, die das dynamische Laden der Webanwendung ermöglichen. 
-AngularJS kommuniziert mit dem $http-Service mit dem Java Spring-boot Server.
-Im vendor Ordner befinden sich alle Dependencies für AngularJS.
+Als Frontend wurde die JavaScript Library AngularJS verwendet. <br>
+Mit AngularJS wurden Komponenten erstellt, die das dynamische Laden der Webanwendung ermöglichen. <br>
+AngularJS kommuniziert mit dem $http-Service mit dem Java Spring-boot Server. <br>
+Im vendor Ordner befinden sich alle Dependencies für AngularJS. <br>
